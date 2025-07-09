@@ -1,4 +1,3 @@
-import Sidebar from '@/components/shared/Sidebar';
 import './globals.css';
 
 type LayoutProps = {
@@ -9,7 +8,6 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <html lang="en">
       <body>
-        <Sidebar />
         <main>{children}</main>
       </body>
     </html>
