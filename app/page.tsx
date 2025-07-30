@@ -1,20 +1,10 @@
-const Page = () => {
-  const today = new Date();
-  const maxDate = today.toISOString().split('T')[0];
+import GameSelector from '@/components/GameSelector';
 
+const Page = () => {
   return (
     <div>
-      <section>
-        <label htmlFor="gameDate">Game date:</label>
-        <input
-          type="date"
-          id="gameDate"
-          name="gameDate"
-          defaultValue={maxDate}
-          min="2020-03-30"
-          max={maxDate}
-        />
-      </section>
+      <GameSelector />
+
       <section>
         <h2>Game Overview</h2>
         <p>No game on deck!</p>
