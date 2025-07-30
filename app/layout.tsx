@@ -1,3 +1,4 @@
+import Header from '@/components/Header';
 import './globals.css';
 
 type LayoutProps = {
@@ -8,6 +9,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <html lang="en">
       <body>
+        <Header />
         <main>{children}</main>
       </body>
     </html>
