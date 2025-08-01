@@ -22,6 +22,8 @@ const GameTabs = () => {
           </li>
         </ul>
       </nav>
+
+      {/* TODO: Conditionally render tab content */}
     </section>
   );
 };
