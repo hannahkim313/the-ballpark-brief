@@ -1,1 +1,44 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --color-primary-900: #00293d;
+}
+
+@layer utilities {
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply text-primary-900 text-pretty;
+  }
+
+  h1 {
+    @apply mb-4 text-3xl font-bold text-balance md:mb-6 lg:mb-8 xl:mb-10;
+  }
+
+  h2 {
+    @apply mb-4 text-2xl font-bold text-balance md:mb-6 lg:mb-8 xl:mb-10;
+  }
+
+  h3 {
+    @apply mb-3 text-xl font-semibold text-balance md:mb-4;
+  }
+
+  h4 {
+    @apply mb-3 text-lg font-medium text-balance md:mb-4;
+  }
+
+  h5 {
+    @apply mb-3 text-base font-medium text-balance md:mb-4;
+  }
+
+  h6 {
+    @apply mb-3 text-base font-medium text-balance md:mb-4;
+  }
+}
