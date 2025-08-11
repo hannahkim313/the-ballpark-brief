@@ -1,3 +1,7 @@
+import GeneralTabContent from './GeneralTabContent';
+import LineupsTabContent from './LineupsTabContent';
+import BoxTabContent from './BoxTabContent';
+
 const GameTabs = () => {
   return (
     <section>
@@ -24,6 +28,9 @@ const GameTabs = () => {
       </nav>
 
       {/* TODO: Conditionally render tab content */}
+      <GeneralTabContent />
+      <LineupsTabContent />
+      <BoxTabContent />
     </section>
   );
 };
