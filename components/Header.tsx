@@ -10,7 +10,7 @@ const Header = () => {
   const todaysFullDate = today.toLocaleDateString(undefined, dateOptions);
 
   return (
-    <header>
+    <header className="px-content py-content">
       <h1>The Ballpark Brief: Game Insights, Lineups & More</h1>
       <p>{todaysFullDate}</p>
     </header>
