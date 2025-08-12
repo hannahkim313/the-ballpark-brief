@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
 @theme {
+  --color-primary-500: #00527a;
   --color-primary-900: #00293d;
 }
 
@@ -40,10 +41,28 @@
   }
 }
 
+/* Spacing */
+
 @utility px-content {
   @apply px-4 md:px-6 lg:px-8 xl:px-12;
 }
 
 @utility py-content {
   @apply py-4 md:py-6;
+}
+
+/* Form elements */
+
+@utility field {
+  @apply flex flex-col gap-2;
+}
+
+@utility form-control {
+  @apply rounded-lg border-1 border-stone-500 px-4 py-2 font-medium;
+}
+
+/* UI elements */
+
+@utility btn-primary {
+  @apply bg-primary-500 rounded-lg px-4 py-2 font-bold text-white;
 }
