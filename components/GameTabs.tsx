@@ -1,36 +1,33 @@
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 import GeneralTabContent from './GeneralTabContent';
 import LineupsTabContent from './LineupsTabContent';
 import BoxTabContent from './BoxTabContent';
 
 const GameTabs = () => {
   return (
-    <section>
-      <h2>Game Details</h2>
+    <section className="px-content py-content">
+      <div className="content-container">
+        <h2>Game Details</h2>
 
-      <nav>
-        <ul role="tablist">
-          <li role="presentation">
-            <button role="tab" aria-selected="true">
-              General
-            </button>
-          </li>
-          <li role="presentation">
-            <button role="tab" aria-selected="false">
-              Lineups
-            </button>
-          </li>
-          <li role="presentation">
-            <button role="tab" aria-selected="false">
-              Box
-            </button>
-          </li>
-        </ul>
-      </nav>
-
-      {/* TODO: Conditionally render tab content */}
-      <GeneralTabContent />
-      <LineupsTabContent />
-      <BoxTabContent />
+        <TabGroup className="space-y-4">
+          <TabList className="space-x-4">
+            <Tab className="tab">General</Tab>
+            <Tab className="tab">Lineups</Tab>
+            <Tab className="tab">Box</Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel>
+              <GeneralTabContent />
+            </TabPanel>
+            <TabPanel>
+              <LineupsTabContent />
+            </TabPanel>
+            <TabPanel>
+              <BoxTabContent />
+            </TabPanel>
+          </TabPanels>
+        </TabGroup>
+      </div>
     </section>
   );
 };

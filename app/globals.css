@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
+  --color-primary-300: #7ccbf3;
+  --color-primary-400: #62c0ef;
   --color-primary-500: #00527a;
   --color-primary-900: #00293d;
 }
@@ -17,31 +19,37 @@
   }
 
   h1 {
-    @apply mb-4 text-3xl font-bold text-balance md:mb-6 lg:mb-8 xl:mb-10;
+    @apply mb-4 text-3xl font-bold text-balance md:mb-6 md:text-4xl lg:mb-8 xl:mb-10;
   }
 
   h2 {
-    @apply mb-4 text-2xl font-bold text-balance md:mb-6 lg:mb-8 xl:mb-10;
+    @apply mb-4 text-2xl font-bold text-balance md:mb-6 md:text-3xl lg:mb-8 xl:mb-10;
   }
 
   h3 {
-    @apply mb-3 text-xl font-semibold text-balance md:mb-4;
+    @apply mb-3 text-xl font-semibold text-balance md:mb-4 md:text-2xl;
   }
 
   h4 {
-    @apply mb-3 text-lg font-medium text-balance md:mb-4;
+    @apply mb-3 text-lg font-medium text-balance md:mb-4 md:font-semibold;
   }
 
   h5 {
-    @apply mb-3 text-base font-medium text-balance md:mb-4;
+    @apply mb-3 text-base font-medium text-balance md:mb-4 md:font-semibold;
   }
 
   h6 {
-    @apply mb-3 text-base font-medium text-balance md:mb-4;
+    @apply mb-3 text-base font-medium text-balance md:mb-4 md:font-semibold;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  *:focus-visible {
+    @apply ring-primary-500 ring-2 ring-offset-2 outline-none;
   }
 }
-
-/* Spacing */
 
 @utility px-content {
   @apply px-4 md:px-6 lg:px-8 xl:px-12;
@@ -51,7 +59,9 @@
   @apply py-4 md:py-6;
 }
 
-/* Form elements */
+@utility content-container {
+  @apply mx-auto max-w-2xl;
+}
 
 @utility field {
   @apply flex flex-col gap-2;
@@ -61,8 +71,10 @@
   @apply rounded-lg border-1 border-stone-500 px-4 py-2 font-medium;
 }
 
-/* UI elements */
+@utility tab {
+  @apply data-[selected]:border-primary-500 data-[selected]:text-primary-500 cursor-pointer border-b-2 border-transparent px-4 py-2 ring-offset-0 transition-all not-data-[selected]:rounded-lg hover:bg-stone-100 focus-visible:bg-stone-100 data-[selected]:rounded-t-lg data-[selected]:font-semibold md:text-lg;
+}
 
 @utility btn-primary {
-  @apply bg-primary-500 rounded-lg px-4 py-2 font-bold text-white;
+  @apply bg-primary-500 active:bg-primary-400 hover:text-primary-900 hover:bg-primary-300 rounded-lg px-4 py-2 font-bold text-white transition-colors;
 }

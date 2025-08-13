@@ -6,8 +6,9 @@ const GameSelector = () => {
 
   return (
     <section className="px-content py-content">
-      <div className="mx-auto max-w-2xl">
+      <div className="content-container">
         <h2>Select a Game</h2>
+
         <form action="" className="flex flex-col">
           <div className="flex flex-col gap-2 md:flex-row md:gap-4">
             <div className="field flex-1/2">
