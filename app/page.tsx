@@ -4,7 +4,7 @@ import GameTabs from '@/components/GameTabs';
 
 const Page = () => {
   return (
-    <div className="space-y-8">
+    <div>
       <GameSelector />
       <GameOverview />
       <GameTabs />
