@@ -3,13 +3,27 @@ const GeneralTabContent = () => {
     <div>
       <h3>General Information</h3>
       {/* TODO: Fetch and render API data */}
-      <p>Umpires:</p>
-      <p>Weather:</p>
-      <p>Wind:</p>
-      <p>Venue:</p>
-      <p>First pitch:</p>
-      <p>Last pitch:</p>
-      <p>Time:</p>
+      <p>
+        <span className="font-bold">Umpires:</span>
+      </p>
+      <p>
+        <span className="font-bold">Weather:</span>
+      </p>
+      <p>
+        <span className="font-bold">Wind:</span>
+      </p>
+      <p>
+        <span className="font-bold">Venue:</span>
+      </p>
+      <p>
+        <span className="font-bold">First pitch:</span>
+      </p>
+      <p>
+        <span className="font-bold">Last pitch:</span>
+      </p>
+      <p>
+        <span className="font-bold">Time:</span>
+      </p>
     </div>
   );
 };
