@@ -1,7 +1,7 @@
 const GeneralTabContent = () => {
   return (
     <div>
-      <h3>Game Overview</h3>
+      <h3>General Information</h3>
       {/* TODO: Fetch and render API data */}
       <p>Umpires:</p>
       <p>Weather:</p>
