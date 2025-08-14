@@ -81,7 +81,7 @@
 }
 
 @utility tab {
-  @apply data-[selected]:border-primary-500 data-[selected]:text-primary-500 cursor-pointer border-b-2 border-transparent px-4 py-2 ring-offset-0 transition-all not-data-[selected]:rounded-lg hover:bg-stone-100 focus-visible:bg-stone-100 data-[selected]:rounded-t-lg data-[selected]:font-semibold md:text-lg;
+  @apply data-[selected]:border-primary-500 data-[selected]:text-primary-500 cursor-pointer border-b-2 border-stone-300 px-4 py-2 ring-offset-0 transition-all outline-none hover:rounded-t-lg hover:bg-stone-200 focus-visible:border-b-1 focus-visible:bg-stone-100 data-[active]:ring-0 data-[selected]:rounded-t-lg data-[selected]:font-semibold md:text-lg;
 }
 
 @utility btn-primary {

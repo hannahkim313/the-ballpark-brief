@@ -10,7 +10,7 @@ const GameTabs = () => {
         <h2>Game Details</h2>
 
         <TabGroup className="space-y-3 md:space-y-5 lg:space-y-6">
-          <TabList className="space-x-4">
+          <TabList>
             <Tab className="tab">General</Tab>
             <Tab className="tab">Lineups</Tab>
             <Tab className="tab">Box</Tab>
