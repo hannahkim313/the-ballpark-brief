@@ -1,5 +1,6 @@
 import { Source_Sans_3 } from 'next/font/google';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import './globals.css';
 
 const sourceSans3 = Source_Sans_3({
@@ -15,9 +16,10 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <html lang="en" className={sourceSans3.className}>
-      <body>
+      <body className="grid min-h-full grid-rows-[auto_1fr_auto]">
         <Header />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
