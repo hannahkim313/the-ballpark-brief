@@ -3,32 +3,44 @@ const GameOverview = () => {
     <section className="px-content py-content bg-stone-100 text-center">
       <h2>Game Overview</h2>
 
-      {/* TODO: Replace content with dynamic values from API */}
-      <div className="space-y-4">
-        <p className="inline-flex items-center gap-4">
-          <span className="inline-flex flex-col whitespace-nowrap md:w-xs">
-            <span className="text-lg font-semibold md:hidden">LAA</span>
-            <span className="hidden text-lg font-semibold md:inline lg:text-xl">
-              Los Angeles Angels
+      <div className="content-container data-card">
+        {/* TODO: Replace content with dynamic values from API */}
+        <div className="space-y-4">
+          <p className="inline-flex items-center gap-4">
+            <span className="inline-flex flex-col whitespace-nowrap md:w-3xs">
+              <span className="text-lg font-bold md:hidden">LAA</span>
+              <span className="hidden text-lg font-bold md:inline md:text-xl">
+                Los Angeles Angels
+              </span>
+              <abbr
+                title="Team's number of wins vs. number of losses"
+                className="text-subtle font-normal"
+              >
+                (55 - 49)
+              </abbr>
             </span>
-            <span>(55-49)</span>
-          </span>
-          @
-          <span className="inline-flex flex-col whitespace-nowrap md:w-xs">
-            <span className="text-lg font-semibold md:hidden">SEA</span>
-            <span className="hidden text-lg font-semibold md:inline lg:text-xl">
-              Seattle Mariners
+            @
+            <span className="inline-flex flex-col whitespace-nowrap md:w-3xs">
+              <span className="text-lg font-bold md:hidden">SEA</span>
+              <span className="hidden text-lg font-bold md:inline md:text-xl">
+                Seattle Mariners
+              </span>
+              <abbr
+                title="Team's number of wins vs. number of losses"
+                className="text-subtle font-normal"
+              >
+                (55 - 49)
+              </abbr>
             </span>
-            <span>(55-49)</span>
-          </span>
-        </p>
+          </p>
 
-        <div>
-          <p>July 25, 2025</p>
-          <p>6:40 PM PDT</p>
+          <div className="font-bold">
+            <p>July 25, 2025</p>
+            <p>6:40 PM PDT</p>
+          </div>
+
+          <p className="text-subtle">T-Mobile Park in Seattle, WA</p>
         </div>
-
-        <p>T-Mobile Park in Seattle, WA</p>
       </div>
     </section>
   );

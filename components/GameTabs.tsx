@@ -5,11 +5,11 @@ import BoxTabContent from './BoxTabContent';
 
 const GameTabs = () => {
   return (
-    <section className="px-content py-content">
+    <section className="px-content py-content bg-stone-100">
       <div className="content-container">
         <h2>Game Details</h2>
 
-        <TabGroup className="space-y-4">
+        <TabGroup className="space-y-3 md:space-y-5 lg:space-y-6">
           <TabList className="space-x-4">
             <Tab className="tab">General</Tab>
             <Tab className="tab">Lineups</Tab>

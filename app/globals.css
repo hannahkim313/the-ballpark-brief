@@ -19,36 +19,41 @@
   }
 
   h1 {
-    @apply mb-4 text-3xl font-bold text-balance md:mb-6 md:text-4xl lg:mb-8 xl:mb-10;
+    @apply mb-4 text-3xl font-bold text-balance md:mb-5 md:text-4xl lg:mb-6;
   }
 
   h2 {
-    @apply mb-4 text-2xl font-bold text-balance md:mb-6 md:text-3xl lg:mb-8 xl:mb-10;
+    @apply mb-4 text-2xl font-bold text-balance md:mb-5 md:text-3xl lg:mb-6;
   }
 
   h3 {
-    @apply mb-3 text-xl font-semibold text-balance md:mb-4 md:text-2xl;
+    @apply mb-3 text-xl font-bold text-balance md:mb-4 md:text-2xl;
   }
 
   h4 {
-    @apply mb-3 text-lg font-medium text-balance md:mb-4 md:font-semibold;
+    @apply mb-3 text-lg font-bold text-balance md:mb-4;
   }
 
-  h5 {
-    @apply mb-3 text-base font-medium text-balance md:mb-4 md:font-semibold;
-  }
-
+  h5,
   h6 {
-    @apply mb-3 text-base font-medium text-balance md:mb-4 md:font-semibold;
+    @apply mb-3 text-base font-bold text-balance md:mb-4;
   }
 
   button {
     cursor: pointer;
   }
 
+  abbr[title] {
+    @apply no-underline hover:underline hover:decoration-dotted hover:underline-offset-2;
+  }
+
   *:focus-visible {
     @apply ring-primary-500 ring-2 ring-offset-2 outline-none;
   }
+}
+
+@utility text-subtle {
+  @apply text-sm font-normal text-stone-600;
 }
 
 @utility px-content {
@@ -61,6 +66,10 @@
 
 @utility content-container {
   @apply mx-auto max-w-2xl;
+}
+
+@utility data-card {
+  @apply rounded-lg bg-white p-4 shadow-md;
 }
 
 @utility field {

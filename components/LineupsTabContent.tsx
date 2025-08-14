@@ -4,10 +4,13 @@ const LineupsTabContent = () => {
   return (
     <div>
       <h3>Starting Lineups</h3>
-      {/* TODO: Fetch and render API data */}
-      <LineupCard />
-      {/* TODO: Fetch and render API data */}
-      <LineupCard />
+
+      <div className="flex flex-col gap-4 md:flex-row md:justify-center">
+        {/* TODO: Fetch and render API data */}
+        <LineupCard />
+        {/* TODO: Fetch and render API data */}
+        <LineupCard />
+      </div>
     </div>
   );
 };
