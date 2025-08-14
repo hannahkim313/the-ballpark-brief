@@ -9,13 +9,14 @@
 
 @layer base {
   html {
+    height: 100%;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply text-primary-900 text-pretty;
+    @apply text-primary-900 h-full text-pretty;
   }
 
   h1 {
@@ -41,6 +42,16 @@
 
   button {
     cursor: pointer;
+  }
+
+  th,
+  td {
+    @apply p-2;
+  }
+
+  th:first-child,
+  td:first-child {
+    @apply sticky left-0 z-10 text-left shadow-md;
   }
 
   abbr[title] {
@@ -80,8 +91,20 @@
   @apply rounded-lg border-1 border-stone-500 px-4 py-2 font-medium;
 }
 
+@utility team-col {
+  @apply w-28 bg-white text-left;
+}
+
+@utility score-col {
+  @apply w-8;
+}
+
+@utility border-col {
+  @apply border-l-1 border-stone-300;
+}
+
 @utility tab {
-  @apply data-[selected]:border-primary-500 data-[selected]:text-primary-500 cursor-pointer border-b-2 border-stone-300 px-4 py-2 ring-offset-0 transition-all outline-none hover:rounded-t-lg hover:bg-stone-200 focus-visible:border-b-1 focus-visible:bg-stone-100 data-[active]:ring-0 data-[selected]:rounded-t-lg data-[selected]:font-semibold md:text-lg;
+  @apply data-[selected]:border-primary-500 data-[selected]:text-primary-500 cursor-pointer border-b-2 border-stone-300 px-4 py-2 ring-offset-0 transition-all outline-none hover:rounded-t-lg hover:bg-stone-200 focus-visible:border-b-1 focus-visible:bg-stone-100 data-[active]:bg-stone-300 data-[active]:ring-0 data-[selected]:rounded-t-lg data-[selected]:font-semibold md:text-lg;
 }
 
 @utility btn-primary {

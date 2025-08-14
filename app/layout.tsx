@@ -18,7 +18,7 @@ const Layout = ({ children }: LayoutProps) => {
     <html lang="en" className={sourceSans3.className}>
       <body className="grid min-h-full grid-rows-[auto_1fr_auto]">
         <Header />
-        <main>{children}</main>
+        <main className="min-w-0">{children}</main>
         <Footer />
       </body>
     </html>
