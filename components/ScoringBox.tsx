@@ -1,0 +1,113 @@
+const ScoringBox = () => {
+  return (
+    <div>
+      <h3>Scoring Box</h3>
+
+      <div className="flex flex-col gap-3 md:gap-4">
+        <p className="flex items-center justify-center gap-8 font-bold">
+          <span>Angels</span>
+          {/* TODO: Update score with dynamic values */}
+          <span className="text-xl md:text-2xl">0 - 0</span>
+          <span>Mariners</span>
+        </p>
+
+        {/* TODO: Fetch and render API data */}
+        <div className="data-card w-full overflow-x-auto p-0">
+          <table className="w-full table-fixed border-collapse text-center whitespace-nowrap">
+            {/* TODO: Update team names with dynamic values */}
+            <caption className="sr-only">
+              Angels vs Mariners Inning-by-Inning Score
+            </caption>
+
+            <thead className="bg-primary-500 text-white">
+              <tr>
+                <th scope="col" className="team-col bg-primary-500">
+                  Team
+                </th>
+                <th scope="col" className="score-col">
+                  1
+                </th>
+                <th scope="col" className="score-col">
+                  2
+                </th>
+                <th scope="col" className="score-col">
+                  3
+                </th>
+                <th scope="col" className="score-col">
+                  4
+                </th>
+                <th scope="col" className="score-col">
+                  5
+                </th>
+                <th scope="col" className="score-col">
+                  6
+                </th>
+                <th scope="col" className="score-col">
+                  7
+                </th>
+                <th scope="col" className="score-col">
+                  8
+                </th>
+                <th scope="col" className="score-col">
+                  9
+                </th>
+                {/* TODO: Dynamically add extra cols if games goes into extra innings */}
+                <th scope="col" className="score-col border-col">
+                  R
+                </th>
+                <th scope="col" className="score-col">
+                  H
+                </th>
+                <th scope="col" className="score-col">
+                  E
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="row" className="team-col">
+                  Angels
+                </th>
+                {/* TODO: Dynamically add <td> to represent table value for each col of this row */}
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col border-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+              </tr>
+
+              <tr>
+                <th scope="row" className="team-col">
+                  Mariners
+                </th>
+                {/* TODO: Dynamically add <td> to represent table value for each col of this row */}
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col border-col">0</td>
+                <td className="score-col">0</td>
+                <td className="score-col">0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ScoringBox;
