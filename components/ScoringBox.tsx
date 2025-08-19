@@ -12,16 +12,16 @@ const ScoringBox = () => {
         </p>
 
         {/* TODO: Fetch and render API data */}
-        <div className="data-card w-full overflow-x-auto p-0">
-          <table className="w-full table-fixed border-collapse text-center whitespace-nowrap">
+        <div className="table-container">
+          <table className="data-table">
             {/* TODO: Update team names with dynamic values */}
             <caption className="sr-only">
               Angels vs Mariners Inning-by-Inning Score
             </caption>
 
-            <thead className="bg-primary-500 text-white">
+            <thead className="table-head">
               <tr>
-                <th scope="col" className="team-col bg-primary-500">
+                <th scope="col" className="first-col-header">
                   Team
                 </th>
                 <th scope="col" className="score-col">
@@ -66,7 +66,7 @@ const ScoringBox = () => {
 
             <tbody>
               <tr>
-                <th scope="row" className="team-col">
+                <th scope="row" className="first-col">
                   Angels
                 </th>
                 {/* TODO: Dynamically add <td> to represent table value for each col of this row */}
@@ -85,7 +85,7 @@ const ScoringBox = () => {
               </tr>
 
               <tr>
-                <th scope="row" className="team-col">
+                <th scope="row" className="first-col">
                   Mariners
                 </th>
                 {/* TODO: Dynamically add <td> to represent table value for each col of this row */}

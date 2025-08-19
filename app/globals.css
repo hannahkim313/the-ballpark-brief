@@ -91,12 +91,28 @@
   @apply rounded-lg border-1 border-stone-500 px-4 py-2 font-medium;
 }
 
-@utility team-col {
-  @apply w-28 bg-white text-left;
+@utility table-container {
+  @apply data-card w-full overflow-x-auto p-0;
+}
+
+@utility data-table {
+  @apply w-full table-auto border-collapse text-center whitespace-nowrap;
+}
+
+@utility table-head {
+  @apply bg-primary-500 text-white;
+}
+
+@utility first-col {
+  @apply w-8 min-w-32 bg-white text-left;
+}
+
+@utility first-col-header {
+  @apply first-col bg-primary-500;
 }
 
 @utility score-col {
-  @apply w-8;
+  @apply w-12;
 }
 
 @utility border-col {
