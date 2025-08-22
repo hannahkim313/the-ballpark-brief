@@ -1,8 +1,37 @@
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 
-const GameSelector = () => {
-  const today = new Date();
-  const maxDate = today.toLocaleDateString('en-CA');
+type GameSelectorProps = {
+  onDateChange: (date: string) => void;
+  gamesList: {
+    gamePk: number;
+    game: string;
+  }[];
+  selectedDate: string;
+  today: string;
+};
+
+const GameSelector = ({
+  onDateChange,
+  gamesList,
+  selectedDate,
+  today,
+}: GameSelectorProps) => {
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onDateChange(e.target.value);
+  };
+
+  const handleDateBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const enteredDate = e.target.value;
+    const minDate = '2023-03-30';
+
+    if (enteredDate < minDate) {
+      onDateChange(minDate);
+    } else if (enteredDate > today) {
+      onDateChange(today);
+    } else {
+      onDateChange(enteredDate);
+    }
+  };
 
   return (
     <section className="px-content py-content">
@@ -11,20 +40,22 @@ const GameSelector = () => {
 
         <form action="" className="flex flex-col">
           <div className="flex flex-col gap-2 md:flex-row md:gap-4">
-            <div className="field flex-1/2">
+            <div className="field flex-1/3">
               <label htmlFor="gameDate">Date of game:</label>
               <input
                 type="date"
                 id="gameDate"
                 name="gameDate"
-                defaultValue={maxDate}
-                min="2020-03-30"
-                max={maxDate}
+                value={selectedDate}
+                min="2023-03-30"
+                max={today}
+                onChange={handleDateChange}
+                onBlur={handleDateBlur}
                 className="form-control"
               />
             </div>
 
-            <div className="field flex-1/2">
+            <div className="field flex-2/3">
               <label htmlFor="game">Game:</label>
               <div className="relative">
                 <select
@@ -32,11 +63,12 @@ const GameSelector = () => {
                   id="game"
                   className="form-control w-full appearance-none pr-10"
                 >
-                  <option value="">Select a game</option>
-                  {/* TODO: Replace options with dynamic values from API */}
-                  <option value="firstGame">First game</option>
-                  <option value="secondGame">Second game</option>
-                  <option value="ThirdGame">Third game</option>
+                  <option value="">-- Select a game --</option>
+                  {gamesList?.map(({ gamePk, game }) => (
+                    <option key={gamePk} value={gamePk}>
+                      {game}
+                    </option>
+                  ))}
                 </select>
                 <ChevronDownIcon
                   aria-hidden="true"

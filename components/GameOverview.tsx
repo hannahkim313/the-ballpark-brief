@@ -1,6 +1,6 @@
 const GameOverview = () => {
   return (
-    <section className="px-content py-content bg-stone-100 text-center">
+    <section className="px-content py-content bg-neutral-100 text-center">
       <h2>Game Overview</h2>
 
       <div className="content-container data-card">

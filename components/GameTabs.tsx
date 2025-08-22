@@ -5,7 +5,7 @@ import BoxTabContent from './BoxTabContent';
 
 const GameTabs = () => {
   return (
-    <section className="px-content py-content bg-stone-100">
+    <section className="px-content py-content bg-neutral-100">
       <div className="content-container">
         <h2>Game Details</h2>
 

@@ -3,7 +3,7 @@
 @theme {
   --color-primary-300: #7ccbf3;
   --color-primary-400: #62c0ef;
-  --color-primary-500: #00527a;
+  --color-primary-500: #005c8a;
   --color-primary-900: #00293d;
 }
 
@@ -41,7 +41,11 @@
   }
 
   button {
-    cursor: pointer;
+    @apply cursor-pointer;
+  }
+
+  select {
+    @apply max-w-full;
   }
 
   th,
@@ -64,7 +68,7 @@
 }
 
 @utility text-subtle {
-  @apply text-sm font-normal text-stone-600;
+  @apply text-sm font-normal text-neutral-600;
 }
 
 @utility px-content {
@@ -88,7 +92,7 @@
 }
 
 @utility form-control {
-  @apply rounded-lg border-1 border-stone-500 px-4 py-2 font-medium;
+  @apply rounded-lg border-1 border-neutral-500 px-4 py-2 font-medium;
 }
 
 @utility table-container {
@@ -100,7 +104,7 @@
 }
 
 @utility table-head {
-  @apply bg-primary-500 text-white;
+  @apply bg-neutral-300;
 }
 
 @utility first-col {
@@ -108,7 +112,7 @@
 }
 
 @utility first-col-header {
-  @apply first-col bg-primary-500;
+  @apply first-col bg-neutral-300;
 }
 
 @utility score-col {
@@ -116,11 +120,11 @@
 }
 
 @utility border-col {
-  @apply border-l-1 border-stone-300;
+  @apply border-l-1 border-neutral-400;
 }
 
 @utility tab {
-  @apply data-[selected]:border-primary-500 data-[selected]:text-primary-500 cursor-pointer border-b-2 border-stone-300 px-4 py-2 ring-offset-0 transition-all outline-none hover:rounded-t-lg hover:bg-stone-200 focus-visible:border-b-1 focus-visible:bg-stone-100 data-[active]:bg-stone-300 data-[active]:ring-0 data-[selected]:rounded-t-lg data-[selected]:font-semibold md:text-lg;
+  @apply data-[selected]:border-primary-500 data-[selected]:text-primary-500 cursor-pointer border-b-2 border-neutral-300 px-4 py-2 ring-offset-0 transition-all outline-none hover:rounded-t-lg hover:bg-neutral-200 focus-visible:border-b-1 focus-visible:bg-neutral-100 data-[active]:bg-neutral-300 data-[active]:ring-0 data-[selected]:rounded-t-lg data-[selected]:font-semibold md:text-lg;
 }
 
 @utility btn-primary {

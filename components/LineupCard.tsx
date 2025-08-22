@@ -1,7 +1,7 @@
 const LineupCard = () => {
   return (
     <article className="data-card flex-1/2 p-0">
-      <div className="border-b-1 border-stone-300 p-4 text-center">
+      <div className="border-b-1 border-neutral-300 p-4 text-center">
         <h4 className="mb-0 font-bold md:text-xl">Seattle Mariners</h4>
         <p className="text-subtle">
           <abbr title="Team's number of wins vs. number of losses">

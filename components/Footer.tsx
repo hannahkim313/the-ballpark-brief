@@ -2,7 +2,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary-900 px-content py-content row-start-3 row-end-4 flex flex-col gap-2 text-center text-sm text-white">
+    <footer className="px-content py-content row-start-3 row-end-4 flex flex-col gap-2 bg-neutral-600 text-center text-sm text-white">
       <p>
         Data provided by MLB Stats API. This site is not affiliated with Major
         League Baseball.
@@ -16,7 +16,7 @@ const Footer = () => {
               aria-label="View Hannah Kim's personal website"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex size-8 items-center justify-center rounded-full"
+              className="inline-flex size-8 items-center justify-center rounded-full focus-visible:ring-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ const Footer = () => {
               aria-label="View the GitHub repository for The Ballpark Brief"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex size-8 items-center justify-center rounded-full"
+              className="inline-flex size-8 items-center justify-center rounded-full focus-visible:ring-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
