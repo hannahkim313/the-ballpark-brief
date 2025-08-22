@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { ScheduleResponse } from '@/types/statsAPI';
-import CenterMessage from '@/components/CenterMessage';
-import GameSelector from '@/components/GameSelector';
-import GameOverview from '@/components/GameOverview';
-import GameTabs from '@/components/GameTabs';
+import CenterMessage from '@/components/ui/CenterMessage';
+import GameSelector from '@/components/game/GameSelector';
+import GameOverview from '@/components/game/GameOverview';
+import GameTabs from '@/components/game/tabs/GameTabs';
 import useStatsAPI from '@/hooks/useStatsAPI';
 
 type GamesList = {
@@ -18,6 +18,8 @@ const Page = () => {
 
   const [selectedDate, setSelectedDate] = useState<string>(today);
   const [gamesList, setGamesList] = useState<GamesList>([]);
+  // TODO: track selected game
+  const [selectedGame, setSelectedGame] = useState<string | null>(null);
 
   const { data, loading, error } = useStatsAPI<ScheduleResponse>(
     `schedule?sportId=1&date=${selectedDate}`

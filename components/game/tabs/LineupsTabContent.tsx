@@ -1,4 +1,4 @@
-import LineupCard from './LineupCard';
+import LineupCard from '../LineupCard';
 
 const LineupsTabContent = () => {
   return (

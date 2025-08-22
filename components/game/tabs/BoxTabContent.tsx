@@ -1,6 +1,6 @@
-import ScoringBox from './ScoringBox';
-import BattingStats from './BattingStats';
-import PitchingStats from './PitchingStats';
+import ScoringBox from '../../stats/ScoringBox';
+import BattingStats from '../../stats/BattingStats';
+import PitchingStats from '../../stats/PitchingStats';
 
 const BoxTabContent = () => {
   return (
