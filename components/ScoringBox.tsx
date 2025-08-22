@@ -53,13 +53,13 @@ const ScoringBox = () => {
                 </th>
                 {/* TODO: Dynamically add extra cols if games goes into extra innings */}
                 <th scope="col" className="score-col border-col">
-                  R
+                  <abbr title="Runs">R</abbr>
                 </th>
                 <th scope="col" className="score-col">
-                  H
+                  <abbr title="Hits">H</abbr>
                 </th>
                 <th scope="col" className="score-col">
-                  E
+                  <abbr title="Errors">E</abbr>
                 </th>
               </tr>
             </thead>
