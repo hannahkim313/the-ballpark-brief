@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ScheduleResponse } from '@/types/statsAPI';
+import Section from '@/components/ui/Section';
 import CenterMessage from '@/components/ui/CenterMessage';
 import GameSelector from '@/components/game/GameSelector';
 import GameOverview from '@/components/game/GameOverview';
@@ -61,15 +62,30 @@ const Page = () => {
   }
 
   return (
-    <div>
+    <div className="flex size-full flex-col">
       <GameSelector
         onDateChange={handleDateChange}
         gamesList={gamesList}
         selectedDate={selectedDate}
         today={today}
       />
-      <GameOverview />
-      <GameTabs />
+
+      {selectedGame ? (
+        <>
+          <GameOverview selectedGame={selectedGame} />
+          <GameTabs selectedGame={selectedGame} />
+        </>
+      ) : (
+        <Section className="flex flex-1 flex-col items-center justify-center text-center">
+          <div className="text-container">
+            <h2>Game Details</h2>
+            <p className="lg:text-lg">
+              Choose a date and game from the options above to see lineups,
+              stats, and game information.
+            </p>
+          </div>
+        </Section>
+      )}
     </div>
   );
 };

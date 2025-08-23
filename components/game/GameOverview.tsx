@@ -1,6 +1,12 @@
-const GameOverview = () => {
+import Section from '../ui/Section';
+
+type GameOverviewProps = {
+  selectedGame: string | null;
+};
+
+const GameOverview = ({ selectedGame }: GameOverviewProps) => {
   return (
-    <section className="px-content py-content bg-neutral-100 text-center">
+    <Section className="text-center">
       <h2>Game Overview</h2>
 
       <div className="content-container data-card">
@@ -42,7 +48,7 @@ const GameOverview = () => {
           <p className="text-subtle">T-Mobile Park in Seattle, WA</p>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

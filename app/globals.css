@@ -83,6 +83,10 @@
   @apply mx-auto max-w-2xl;
 }
 
+@utility text-container {
+  @apply mx-auto max-w-lg;
+}
+
 @utility data-card {
   @apply rounded-lg bg-white p-4 shadow-md;
 }

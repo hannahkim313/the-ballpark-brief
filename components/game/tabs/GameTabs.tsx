@@ -1,11 +1,16 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
+import Section from '@/components/ui/Section';
 import GeneralTabContent from './GeneralTabContent';
 import LineupsTabContent from './LineupsTabContent';
 import BoxTabContent from './BoxTabContent';
 
-const GameTabs = () => {
+type GameTabsProps = {
+  selectedGame: string | null;
+};
+
+const GameTabs = ({ selectedGame }: GameTabsProps) => {
   return (
-    <section className="px-content py-content bg-neutral-100">
+    <Section>
       <div className="content-container">
         <h2>Game Details</h2>
 
@@ -28,7 +33,7 @@ const GameTabs = () => {
           </TabPanels>
         </TabGroup>
       </div>
-    </section>
+    </Section>
   );
 };
 
