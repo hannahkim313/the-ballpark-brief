@@ -19,8 +19,9 @@ const Page = () => {
 
   const [selectedDate, setSelectedDate] = useState<string>(today);
   const [gamesList, setGamesList] = useState<GamesList>([]);
-  // TODO: track selected game
+  const [pendingGame, setPendingGame] = useState<string | null>(null);
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
+  // TODO: track game data and implement to display in UI
 
   const { data, loading, error } = useStatsAPI<ScheduleResponse>(
     `schedule?sportId=1&date=${selectedDate}`
@@ -28,6 +29,14 @@ const Page = () => {
 
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
+  };
+
+  const handleGameChange = (game: string) => {
+    setPendingGame(game);
+  };
+
+  const handleSubmit = () => {
+    setSelectedGame(pendingGame);
   };
 
   useEffect(() => {
@@ -68,6 +77,9 @@ const Page = () => {
         gamesList={gamesList}
         selectedDate={selectedDate}
         today={today}
+        onPendingGameChange={handleGameChange}
+        pendingGame={pendingGame}
+        onSubmit={handleSubmit}
       />
 
       {selectedGame ? (
@@ -78,7 +90,7 @@ const Page = () => {
       ) : (
         <Section className="flex flex-1 flex-col items-center justify-center text-center">
           <div className="text-container">
-            <h2>Game Details</h2>
+            <h2>Nothing to Show Yet!</h2>
             <p className="lg:text-lg">
               Choose a date and game from the options above to see lineups,
               stats, and game information.

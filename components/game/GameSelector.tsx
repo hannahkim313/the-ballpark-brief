@@ -8,6 +8,9 @@ type GameSelectorProps = {
   }[];
   selectedDate: string;
   today: string;
+  onPendingGameChange: (game: string) => void;
+  pendingGame: string | null;
+  onSubmit: () => void;
 };
 
 const GameSelector = ({
@@ -15,6 +18,9 @@ const GameSelector = ({
   gamesList,
   selectedDate,
   today,
+  onPendingGameChange,
+  pendingGame,
+  onSubmit,
 }: GameSelectorProps) => {
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onDateChange(e.target.value);
@@ -33,12 +39,21 @@ const GameSelector = ({
     }
   };
 
+  const handlePendingGameChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    onPendingGameChange(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit();
+  };
+
   return (
     <section className="px-content py-content">
       <div className="content-container">
         <h2>Select a Game</h2>
 
-        <form action="" className="flex flex-col">
+        <form action="" className="flex flex-col" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2 md:flex-row md:gap-4">
             <div className="field flex-1/3">
               <label htmlFor="gameDate">Date of game:</label>
@@ -61,6 +76,8 @@ const GameSelector = ({
                 <select
                   name="game"
                   id="game"
+                  value={pendingGame ?? ''}
+                  onChange={handlePendingGameChange}
                   className="form-control w-full appearance-none pr-10"
                 >
                   <option value="">-- Select a game --</option>
