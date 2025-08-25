@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ScheduleResponse } from '@/types/statsAPI';
+import { GameResponse, ScheduleResponse } from '@/types/statsAPI';
 import Section from '@/components/ui/Section';
 import CenterMessage from '@/components/ui/CenterMessage';
 import GameSelector from '@/components/game/GameSelector';
@@ -22,10 +22,25 @@ const Page = () => {
   const [pendingGame, setPendingGame] = useState<string | null>(null);
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
   // TODO: track game data and implement to display in UI
+  const [gameData, setGameData] = useState<GameResponse | null>(null);
 
-  const { data, loading, error } = useStatsAPI<ScheduleResponse>(
-    `schedule?sportId=1&date=${selectedDate}`
+  const {
+    data: scheduleData,
+    loading: scheduleLoading,
+    error: scheduleError,
+  } = useStatsAPI<ScheduleResponse>(
+    `v1/schedule?sportId=1&date=${selectedDate}`
   );
+
+  const {
+    data: liveData,
+    loading: gameLoading,
+    error: gameError,
+  } = useStatsAPI<GameResponse>(
+    selectedGame ? `v1.1/game/${selectedGame}/feed/live` : null
+  );
+
+  console.log(liveData);
 
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
@@ -40,11 +55,11 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (!data) {
+    if (!scheduleData) {
       return;
     }
 
-    const todaysGames = data.dates?.[0]?.games ?? [];
+    const todaysGames = scheduleData.dates?.[0]?.games ?? [];
 
     if (todaysGames.length === 0) {
       return;
@@ -60,14 +75,14 @@ const Page = () => {
     });
 
     setGamesList(gamesList);
-  }, [data]);
+  }, [scheduleData]);
 
-  if (loading) {
+  if (scheduleLoading) {
     return <CenterMessage>Loading...</CenterMessage>;
   }
 
-  if (error) {
-    return <CenterMessage>{error}</CenterMessage>;
+  if (scheduleError) {
+    return <CenterMessage>{scheduleError}</CenterMessage>;
   }
 
   return (

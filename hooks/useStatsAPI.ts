@@ -17,7 +17,7 @@ const useStatsAPI = <T>(url: string | null) => {
       setLoading(true);
 
       try {
-        const res = await fetch(`https://statsapi.mlb.com/api/v1/${url}`, {
+        const res = await fetch(`https://statsapi.mlb.com/api/${url}`, {
           signal,
         });
 
