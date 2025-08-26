@@ -43,6 +43,8 @@ const Page = () => {
 
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
+    setPendingGame(null);
+    setSelectedGame(null);
   };
 
   const handleGameChange = (game: string) => {
@@ -96,7 +98,7 @@ const Page = () => {
         onSubmit={handleGameSubmit}
       />
 
-      {liveData ? (
+      {selectedGame && liveData ? (
         <>
           <GameOverview liveGameData={liveData} />
           <GameTabs liveGameData={liveData} />
