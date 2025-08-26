@@ -1,30 +1,11 @@
 import { GameResponse } from '@/types/statsAPI';
 import Section from '../ui/Section';
-import CenterMessage from '../ui/CenterMessage';
 
 type GameOverviewProps = {
-  liveGameData: GameResponse | null;
-  gameLoading: boolean;
-  gameError: string | null;
+  liveGameData: GameResponse;
 };
 
-const GameOverview = ({
-  liveGameData,
-  gameLoading,
-  gameError,
-}: GameOverviewProps) => {
-  if (!liveGameData) {
-    return;
-  }
-
-  if (gameLoading) {
-    return <CenterMessage>Loading...</CenterMessage>;
-  }
-
-  if (gameError) {
-    return <CenterMessage>{gameError}</CenterMessage>;
-  }
-
+const GameOverview = ({ liveGameData }: GameOverviewProps) => {
   const {
     gameData: { datetime, teams, venue },
   } = liveGameData;

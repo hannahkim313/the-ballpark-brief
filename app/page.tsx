@@ -76,12 +76,12 @@ const Page = () => {
     setGamesList(gamesList);
   }, [scheduleData]);
 
-  if (scheduleLoading) {
+  if (scheduleLoading || gameLoading) {
     return <CenterMessage>Loading...</CenterMessage>;
   }
 
-  if (scheduleError) {
-    return <CenterMessage>{scheduleError}</CenterMessage>;
+  if (scheduleError || gameError) {
+    return <CenterMessage>{scheduleError || gameError}</CenterMessage>;
   }
 
   return (
@@ -96,14 +96,10 @@ const Page = () => {
         onSubmit={handleSubmit}
       />
 
-      {selectedGame ? (
+      {liveData ? (
         <>
-          <GameOverview
-            liveGameData={liveData}
-            gameLoading={gameLoading}
-            gameError={gameError}
-          />
-          <GameTabs selectedGame={selectedGame} />
+          <GameOverview liveGameData={liveData} />
+          <GameTabs liveGameData={liveData} />
         </>
       ) : (
         <Section className="flex flex-1 flex-col items-center justify-center text-center">
