@@ -49,7 +49,7 @@ const Page = () => {
     setPendingGame(game);
   };
 
-  const handleSubmit = () => {
+  const handleGameSubmit = () => {
     setSelectedGame(pendingGame);
   };
 
@@ -93,7 +93,7 @@ const Page = () => {
         today={today}
         onPendingGameChange={handleGameChange}
         pendingGame={pendingGame}
-        onSubmit={handleSubmit}
+        onSubmit={handleGameSubmit}
       />
 
       {liveData ? (

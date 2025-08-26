@@ -43,7 +43,7 @@ const GameSelector = ({
     onPendingGameChange(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleGameSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit();
   };
@@ -53,7 +53,7 @@ const GameSelector = ({
       <div className="content-container">
         <h2>Select a Game</h2>
 
-        <form action="" className="flex flex-col" onSubmit={handleSubmit}>
+        <form action="" className="flex flex-col" onSubmit={handleGameSubmit}>
           <div className="flex flex-col gap-2 md:flex-row md:gap-4">
             <div className="field flex-1/3">
               <label htmlFor="gameDate">Date of game:</label>

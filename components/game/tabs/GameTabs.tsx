@@ -1,14 +1,15 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
+import { GameResponse } from '@/types/statsAPI';
 import Section from '@/components/ui/Section';
 import GeneralTabContent from './GeneralTabContent';
 import LineupsTabContent from './LineupsTabContent';
 import BoxTabContent from './BoxTabContent';
 
 type GameTabsProps = {
-  selectedGame: string | null;
+  liveGameData: GameResponse;
 };
 
-const GameTabs = ({ selectedGame }: GameTabsProps) => {
+const GameTabs = ({ liveGameData }: GameTabsProps) => {
   return (
     <Section>
       <div className="content-container">
