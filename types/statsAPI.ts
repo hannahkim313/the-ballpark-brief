@@ -23,7 +23,7 @@ export type GameResponse = {
   gameData: {
     datetime: {
       ampm: string;
-      dateTime: string;
+      officialDate: string;
       time: string;
     };
     gameInfo: {
@@ -33,6 +33,7 @@ export type GameResponse = {
     };
     teams: {
       away: {
+        abbreviation: string;
         name: string;
         record: {
           leagueRecord: {
@@ -42,6 +43,7 @@ export type GameResponse = {
         };
       };
       home: {
+        abbreviation: string;
         name: string;
         record: {
           leagueRecord: {
