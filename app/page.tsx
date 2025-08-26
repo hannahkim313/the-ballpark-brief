@@ -21,8 +21,6 @@ const Page = () => {
   const [gamesList, setGamesList] = useState<GamesList>([]);
   const [pendingGame, setPendingGame] = useState<string | null>(null);
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
-  // TODO: track game data and implement to display in UI
-  const [gameData, setGameData] = useState<GameResponse | null>(null);
 
   const {
     data: scheduleData,
@@ -40,6 +38,7 @@ const Page = () => {
     selectedGame ? `v1.1/game/${selectedGame}/feed/live` : null
   );
 
+  // TODO: remove console log when finished implementing
   console.log(liveData);
 
   const handleDateChange = (date: string) => {
@@ -99,7 +98,11 @@ const Page = () => {
 
       {selectedGame ? (
         <>
-          <GameOverview selectedGame={selectedGame} />
+          <GameOverview
+            liveGameData={liveData}
+            gameLoading={gameLoading}
+            gameError={gameError}
+          />
           <GameTabs selectedGame={selectedGame} />
         </>
       ) : (

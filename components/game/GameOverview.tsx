@@ -1,51 +1,87 @@
+import { GameResponse } from '@/types/statsAPI';
 import Section from '../ui/Section';
+import CenterMessage from '../ui/CenterMessage';
 
 type GameOverviewProps = {
-  selectedGame: string | null;
+  liveGameData: GameResponse | null;
+  gameLoading: boolean;
+  gameError: string | null;
 };
 
-const GameOverview = ({ selectedGame }: GameOverviewProps) => {
+const GameOverview = ({
+  liveGameData,
+  gameLoading,
+  gameError,
+}: GameOverviewProps) => {
+  if (!liveGameData) {
+    return;
+  }
+
+  if (gameLoading) {
+    return <CenterMessage>Loading...</CenterMessage>;
+  }
+
+  if (gameError) {
+    return <CenterMessage>{gameError}</CenterMessage>;
+  }
+
+  const {
+    gameData: { datetime, teams, venue },
+  } = liveGameData;
+
+  const formattedDate = new Date(datetime.officialDate).toLocaleDateString(
+    'en-us',
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }
+  );
+
   return (
     <Section className="text-center">
       <h2>Game Overview</h2>
 
       <div className="content-container data-card">
-        {/* TODO: Replace content with dynamic values from API */}
         <div className="space-y-4">
           <p className="inline-flex items-center gap-4">
             <span className="inline-flex flex-col whitespace-nowrap md:w-3xs">
-              <span className="text-lg font-bold md:hidden">LAA</span>
+              <span className="text-lg font-bold md:hidden">
+                {teams.away.abbreviation}
+              </span>
               <span className="hidden text-lg font-bold md:inline md:text-xl">
-                Los Angeles Angels
+                {teams.away.name}
               </span>
               <abbr
                 title="Team's number of wins vs. number of losses"
                 className="text-subtle font-normal"
               >
-                (55 - 49)
+                {`(${teams.away.record.leagueRecord.wins} - ${teams.away.record.leagueRecord.losses})`}
               </abbr>
             </span>
             @
             <span className="inline-flex flex-col whitespace-nowrap md:w-3xs">
-              <span className="text-lg font-bold md:hidden">SEA</span>
+              <span className="text-lg font-bold md:hidden">
+                {teams.home.abbreviation}
+              </span>
               <span className="hidden text-lg font-bold md:inline md:text-xl">
-                Seattle Mariners
+                {teams.home.name}
               </span>
               <abbr
                 title="Team's number of wins vs. number of losses"
                 className="text-subtle font-normal"
               >
-                (55 - 49)
+                {`(${teams.home.record.leagueRecord.wins} - ${teams.home.record.leagueRecord.losses})`}
               </abbr>
             </span>
           </p>
 
           <div className="font-bold">
-            <p>July 25, 2025</p>
-            <p>6:40 PM PDT</p>
+            <p>{formattedDate}</p>
+            <p>{`${datetime.time} ${datetime.ampm} ${venue.timeZone.tz}`}</p>
           </div>
 
-          <p className="text-subtle">T-Mobile Park in Seattle, WA</p>
+          <p className="text-subtle">{`${venue.name} in ${venue.location.city}, ${venue.location.stateAbbrev}`}</p>
         </div>
       </div>
     </Section>
