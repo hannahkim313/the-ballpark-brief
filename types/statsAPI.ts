@@ -27,9 +27,9 @@ export type GameResponse = {
       time: string;
     };
     gameInfo: {
-      attendance: number;
-      firstPitch: string;
-      gameDurationMinutes: number;
+      attendance?: number;
+      firstPitch?: string;
+      gameDurationMinutes?: number;
     };
     teams: {
       away: {
@@ -63,22 +63,23 @@ export type GameResponse = {
       };
       name: string;
       timeZone: {
+        id: string;
         tz: string;
       };
     };
     weather: {
-      condition: string;
-      temp: string;
-      wind: string;
+      condition?: string;
+      temp?: string;
+      wind?: string;
     };
   };
   liveData: {
     boxscore: {
       officials: {
-        official: {
-          fullName: string;
+        official?: {
+          fullName?: string;
         };
-        officialType: string;
+        officialType?: string;
       }[];
     };
   };
