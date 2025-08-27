@@ -1,6 +1,7 @@
 import { GameResponse } from '@/types/statsAPI';
 import {
   formatGameTime,
+  formatNumber,
   formatPitchTime,
   formatText,
   formatUmpires,
@@ -40,6 +41,10 @@ const GeneralTabContent = ({ liveGameData }: GeneralTabContentProps) => {
         <p>
           <span className="font-bold">Venue: </span>
           {formatText(venue.name)}.
+        </p>
+        <p>
+          <span className="font-bold">Attendance: </span>
+          {formatText(formatNumber(gameInfo.attendance))}.
         </p>
         <p>
           <span className="font-bold">First pitch: </span>

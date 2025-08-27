@@ -8,6 +8,14 @@ export const formatText = (value?: string): string => {
   return value;
 };
 
+export const formatNumber = (value?: number): string => {
+  if (!value) {
+    return 'TBD';
+  }
+
+  return value.toLocaleString('en-us');
+};
+
 export const formatUmpires = (
   umpires: GameResponse['liveData']['boxscore']['officials']
 ): string => {
