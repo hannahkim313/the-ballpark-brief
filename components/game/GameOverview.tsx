@@ -27,7 +27,7 @@ const GameOverview = ({ liveGameData }: GameOverviewProps) => {
               </span>
               <abbr
                 title="Team's number of wins vs. number of losses"
-                className="text-subtle font-normal"
+                className="text-subtle mx-auto w-fit font-normal"
               >
                 {`(${teams.away.record.leagueRecord.wins} - ${teams.away.record.leagueRecord.losses})`}
               </abbr>
@@ -42,7 +42,7 @@ const GameOverview = ({ liveGameData }: GameOverviewProps) => {
               </span>
               <abbr
                 title="Team's number of wins vs. number of losses"
-                className="text-subtle font-normal"
+                className="text-subtle mx-auto w-fit font-normal"
               >
                 {`(${teams.home.record.leagueRecord.wins} - ${teams.home.record.leagueRecord.losses})`}
               </abbr>
