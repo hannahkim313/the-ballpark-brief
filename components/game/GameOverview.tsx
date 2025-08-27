@@ -1,5 +1,6 @@
 import { GameResponse } from '@/types/statsAPI';
 import Section from '../ui/Section';
+import { formatGameDate } from '@/utils/game';
 
 type GameOverviewProps = {
   liveGameData: GameResponse;
@@ -9,15 +10,6 @@ const GameOverview = ({ liveGameData }: GameOverviewProps) => {
   const {
     gameData: { datetime, teams, venue },
   } = liveGameData;
-
-  const formattedDate = new Date(datetime.officialDate).toLocaleDateString(
-    'en-us',
-    {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }
-  );
 
   return (
     <Section className="text-center">
@@ -58,7 +50,7 @@ const GameOverview = ({ liveGameData }: GameOverviewProps) => {
           </p>
 
           <div className="font-bold">
-            <p>{formattedDate}</p>
+            <p>{formatGameDate(datetime.officialDate)}</p>
             <p>{`${datetime.time} ${datetime.ampm} ${venue.timeZone.tz}`}</p>
           </div>
 

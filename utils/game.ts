@@ -79,3 +79,17 @@ export const formatGameTime = (durationMinutes?: number): string => {
 
   return `${hours}h ${minutes}m`;
 };
+
+export const formatGameDate = (date: string): string => {
+  if (!date) {
+    return 'TBD';
+  }
+
+  const localDate = new Date(`${date}T00:00:00`);
+
+  return localDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
