@@ -31,6 +31,14 @@ export type GameResponse = {
       firstPitch?: string;
       gameDurationMinutes?: number;
     };
+    probablePitchers: {
+      away?: {
+        id?: number;
+      };
+      home?: {
+        id?: number;
+      };
+    };
     teams: {
       away: {
         abbreviation: string;
@@ -81,6 +89,48 @@ export type GameResponse = {
         };
         officialType?: string;
       }[];
+      teams: {
+        away: {
+          players: {
+            jerseyNumber: string;
+            person: {
+              fullName: string;
+              id: number;
+              link: string;
+            };
+            position: {
+              abbreviation: string;
+              name: string;
+              type: string;
+            };
+          };
+        };
+        home: {};
+      };
     };
   };
 };
+
+// TODO: shape data for individual pitcher response
+export type PitcherResponse = {
+  people: {
+    fullName: string;
+    primaryNumber: string;
+    pitchHand: {
+      code: string;
+    };
+    stats: {
+      splits: {
+        stat: {
+          era: string;
+          losses: number;
+          strikeOuts: number;
+          wins: number;
+        };
+      }[];
+    }[];
+  }[];
+};
+
+// TODO: shape data for individual hitter response
+export type BatterResponse = {};

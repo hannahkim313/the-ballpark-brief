@@ -26,7 +26,7 @@ const GameTabs = ({ liveGameData }: GameTabsProps) => {
               <GeneralTabContent liveGameData={liveGameData} />
             </TabPanel>
             <TabPanel>
-              <LineupsTabContent />
+              <LineupsTabContent liveGameData={liveGameData} />
             </TabPanel>
             <TabPanel>
               <BoxTabContent />

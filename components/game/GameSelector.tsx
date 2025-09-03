@@ -63,7 +63,8 @@ const GameSelector = ({
                 name="gameDate"
                 value={selectedDate}
                 min="2023-03-30"
-                max={today}
+                // FIXME: remove comment when finished implementing
+                // max={today}
                 onChange={handleDateChange}
                 onBlur={handleDateBlur}
                 className="form-control"
