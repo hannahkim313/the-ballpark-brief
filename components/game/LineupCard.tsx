@@ -1,6 +1,7 @@
 import { GameResponse, PitcherResponse } from '@/types/statsAPI';
 import useStatsAPI from '@/hooks/useStatsAPI';
 import CenterMessage from '../ui/CenterMessage';
+import { buildPitcherStats, getBattingOrder } from '@/utils/game';
 
 type LineupCardProps = {
   liveGameData: GameResponse;
@@ -8,25 +9,15 @@ type LineupCardProps = {
 };
 
 const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
-  const team = isAway ? 'away' : 'home';
-
   const {
     gameData: { teams, probablePitchers },
     liveData: { boxscore },
   } = liveGameData;
 
+  const team = isAway ? 'away' : 'home';
   const gameTeam = teams[team];
   const boxscoreTeam = boxscore.teams[team];
-
-  const battingOrder = Object.values(boxscore.teams[team].players)
-    .filter(
-      (player) =>
-        player.position.name !== 'Pitcher' &&
-        parseInt(player.battingOrder, 10) % 100 === 0
-    )
-    .sort(
-      (a, b) => parseInt(a.battingOrder, 10) - parseInt(b.battingOrder, 10)
-    );
+  const battingOrder = getBattingOrder(boxscore, team);
   const pitcherId = probablePitchers[team]?.id;
 
   const {
@@ -47,17 +38,7 @@ const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
     return <CenterMessage>{pitcherDataError}</CenterMessage>;
   }
 
-  const pitcher = pitcherData?.people[0];
-
-  const pitcherStats = {
-    fullName: pitcher?.fullName ?? 'TBD',
-    hand: pitcher?.pitchHand?.code ? `${pitcher.pitchHand.code}HP` : null,
-    number: pitcher?.primaryNumber ? `#${pitcher.primaryNumber}` : null,
-    era: pitcher?.stats[0]?.splits[0]?.stat.era ?? null,
-    losses: pitcher?.stats[0]?.splits[0]?.stat.losses ?? null,
-    strikeOuts: pitcher?.stats[0]?.splits[0]?.stat.strikeOuts ?? null,
-    wins: pitcher?.stats[0]?.splits[0]?.stat.wins ?? null,
-  };
+  const pitcherStats = buildPitcherStats(pitcherData?.people[0]);
 
   return (
     <article className="data-card flex-1/2 p-0">
