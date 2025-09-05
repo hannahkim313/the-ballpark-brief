@@ -8,6 +8,7 @@ import GameSelector from '@/components/game/GameSelector';
 import GameOverview from '@/components/game/GameOverview';
 import GameTabs from '@/components/game/tabs/GameTabs';
 import useStatsAPI from '@/hooks/useStatsAPI';
+import { getPollInterval } from '@/utils/game';
 
 type GamesList = {
   gamePk: number;
@@ -21,6 +22,9 @@ const Page = () => {
   const [gamesList, setGamesList] = useState<GamesList>([]);
   const [pendingGame, setPendingGame] = useState<string | null>(null);
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
+  const [gameState, setGameState] = useState<string | undefined>(undefined);
+
+  const pollInterval = getPollInterval(gameState);
 
   const {
     data: scheduleData,
@@ -35,11 +39,13 @@ const Page = () => {
     loading: gameLoading,
     error: gameError,
   } = useStatsAPI<GameResponse>(
-    selectedGame ? `v1.1/game/${selectedGame}/feed/live` : null
+    selectedGame ? `v1.1/game/${selectedGame}/feed/live` : null,
+    { pollInterval }
   );
 
   // TODO: remove console log when finished implementing
   console.log(liveData);
+  console.log(pollInterval);
 
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
@@ -77,6 +83,16 @@ const Page = () => {
 
     setGamesList(gamesList);
   }, [scheduleData]);
+
+  useEffect(() => {
+    if (liveData) {
+      setGameState(liveData.gameData.status.abstractGameState);
+    } else {
+      setGameState('Preview');
+    }
+
+    return;
+  }, [liveData]);
 
   if (scheduleLoading || gameLoading) {
     return <CenterMessage>Loading...</CenterMessage>;

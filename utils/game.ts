@@ -101,3 +101,15 @@ export const formatGameDate = (date: string): string => {
     day: 'numeric',
   });
 };
+
+export const getPollInterval = (state?: string): number | undefined => {
+  if (state === 'Preview') {
+    return 5 * 60 * 1000;
+  } else if (state === 'Live') {
+    return 30 * 1000;
+  } else if (state === 'Final') {
+    return undefined;
+  }
+
+  return undefined;
+};

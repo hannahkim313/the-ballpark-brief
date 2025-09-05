@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react';
 
-const useStatsAPI = <T>(url: string | null) => {
+type Options = {
+  pollInterval?: number | undefined;
+};
+
+const useStatsAPI = <T>(url: string | null, options: Options = {}) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(url ? true : false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!url) {
+      setData(null);
+      setLoading(false);
+
       return;
     }
 
@@ -48,10 +55,19 @@ const useStatsAPI = <T>(url: string | null) => {
 
     fetchData();
 
+    if (options.pollInterval) {
+      const id = setInterval(fetchData, options.pollInterval);
+
+      return () => {
+        clearInterval(id);
+        controller.abort();
+      };
+    }
+
     return () => {
       controller.abort();
     };
-  }, [url]);
+  }, [url, options.pollInterval]);
 
   return {
     data,
