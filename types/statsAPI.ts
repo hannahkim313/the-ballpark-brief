@@ -105,7 +105,21 @@ export type GameResponse = {
             };
           };
         };
-        home: {};
+        home: {
+          players: {
+            jerseyNumber: string;
+            person: {
+              fullName: string;
+              id: number;
+              link: string;
+            };
+            position: {
+              abbreviation: string;
+              name: string;
+              type: string;
+            };
+          };
+        };
       };
     };
   };
