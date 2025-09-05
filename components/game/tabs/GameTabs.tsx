@@ -7,15 +7,21 @@ import BoxTabContent from './BoxTabContent';
 
 type GameTabsProps = {
   liveGameData: GameResponse;
+  tabIndex: number;
+  onTabChange: (index: number) => void;
 };
 
-const GameTabs = ({ liveGameData }: GameTabsProps) => {
+const GameTabs = ({ liveGameData, tabIndex, onTabChange }: GameTabsProps) => {
   return (
     <Section>
       <div className="content-container">
         <h2>Game Details</h2>
 
-        <TabGroup className="space-y-3 md:space-y-5 lg:space-y-6">
+        <TabGroup
+          selectedIndex={tabIndex}
+          onChange={onTabChange}
+          className="space-y-3 md:space-y-5 lg:space-y-6"
+        >
           <TabList>
             <Tab className="tab">General</Tab>
             <Tab className="tab">Lineups</Tab>

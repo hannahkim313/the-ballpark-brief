@@ -23,6 +23,7 @@ const Page = () => {
   const [pendingGame, setPendingGame] = useState<string | null>(null);
   const [selectedGame, setSelectedGame] = useState<string | null>(null);
   const [gameState, setGameState] = useState<string | undefined>(undefined);
+  const [tabIndex, setTabIndex] = useState(0);
 
   const pollInterval = getPollInterval(gameState);
 
@@ -117,7 +118,11 @@ const Page = () => {
       {selectedGame && liveData ? (
         <>
           <GameOverview liveGameData={liveData} />
-          <GameTabs liveGameData={liveData} />
+          <GameTabs
+            liveGameData={liveData}
+            tabIndex={tabIndex}
+            onTabChange={setTabIndex}
+          />
         </>
       ) : (
         <Section className="flex flex-1 flex-col items-center justify-center text-center">

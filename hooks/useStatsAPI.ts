@@ -20,8 +20,10 @@ const useStatsAPI = <T>(url: string | null, options: Options = {}) => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const fetchData = async () => {
-      setLoading(true);
+    const fetchData = async (isInitial: boolean) => {
+      if (isInitial) {
+        setLoading(true);
+      }
 
       try {
         const res = await fetch(`https://statsapi.mlb.com/api/${url}`, {
@@ -53,10 +55,10 @@ const useStatsAPI = <T>(url: string | null, options: Options = {}) => {
       }
     };
 
-    fetchData();
+    fetchData(true);
 
     if (options.pollInterval) {
-      const id = setInterval(fetchData, options.pollInterval);
+      const id = setInterval(() => fetchData(false), options.pollInterval);
 
       return () => {
         clearInterval(id);
