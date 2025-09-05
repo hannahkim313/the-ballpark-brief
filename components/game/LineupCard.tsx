@@ -8,11 +8,25 @@ type LineupCardProps = {
 };
 
 const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
+  const team = isAway ? 'away' : 'home';
+
   const {
     gameData: { teams, probablePitchers },
+    liveData: { boxscore },
   } = liveGameData;
 
-  const team = isAway ? 'away' : 'home';
+  const gameTeam = teams[team];
+  const boxscoreTeam = boxscore.teams[team];
+
+  const battingOrder = Object.values(boxscore.teams[team].players)
+    .filter(
+      (player) =>
+        player.position.name !== 'Pitcher' &&
+        parseInt(player.battingOrder, 10) % 100 === 0
+    )
+    .sort(
+      (a, b) => parseInt(a.battingOrder, 10) - parseInt(b.battingOrder, 10)
+    );
   const pitcherId = probablePitchers[team]?.id;
 
   const {
@@ -48,15 +62,14 @@ const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
   return (
     <article className="data-card flex-1/2 p-0">
       <div className="border-b-1 border-neutral-300 p-4 text-center">
-        <h4 className="mb-0 font-bold md:text-xl">{teams[team].name}</h4>
+        <h4 className="mb-0 font-bold md:text-xl">{gameTeam.name}</h4>
         <p className="text-subtle">
           <abbr title="Team's number of wins vs. number of losses">
-            {`(${teams[team].record.leagueRecord.wins} - ${teams[team].record.leagueRecord.losses})`}
+            {`(${gameTeam.record.leagueRecord.wins} - ${gameTeam.record.leagueRecord.losses})`}
           </abbr>
         </p>
       </div>
 
-      {/* TODO: display probable pitcher before game and switch to actual pitcher when game is live */}
       <div className="space-y-3 p-4 md:space-y-4">
         <div className="text-center">
           <h5 className="mb-0 font-semibold">Pitcher</h5>
@@ -88,116 +101,33 @@ const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
 
         <div>
           <h5>Batters</h5>
-          <ol className="list-inside list-decimal">
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-            <li className="font-semibold">
-              J.P. Crawford{' '}
-              <abbr title="Left-handed batter" className="text-subtle">
-                (L)
-              </abbr>{' '}
-              <abbr title="Position: Shortstop" className="text-subtle">
-                SS
-              </abbr>{' '}
-              <abbr title="Uniform number" className="text-subtle">
-                #3
-              </abbr>
-            </li>
-          </ol>
+          {battingOrder.length === 0 ? (
+            <p className="font-semibold">TBD</p>
+          ) : (
+            <ol className="list-inside list-decimal">
+              {battingOrder.map((batter) => {
+                const player = boxscoreTeam.players[`ID${batter.person.id}`];
+
+                return (
+                  <li
+                    key={batter.person.id.toString()}
+                    className="font-semibold"
+                  >
+                    {player.person.fullName}{' '}
+                    <abbr
+                      title={`Position: ${player.position.name}`}
+                      className="text-subtle"
+                    >
+                      {player.position.abbreviation}
+                    </abbr>{' '}
+                    <abbr title="Uniform number" className="text-subtle">
+                      {`#${player.jerseyNumber}`}
+                    </abbr>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
         </div>
       </div>
     </article>

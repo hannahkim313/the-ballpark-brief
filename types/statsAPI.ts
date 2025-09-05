@@ -91,32 +91,40 @@ export type GameResponse = {
       }[];
       teams: {
         away: {
+          battingOrder: number[];
           players: {
-            jerseyNumber: string;
-            person: {
-              fullName: string;
-              id: number;
-              link: string;
-            };
-            position: {
-              abbreviation: string;
-              name: string;
-              type: string;
+            [key: string]: {
+              battingOrder: string;
+              jerseyNumber: string;
+              person: {
+                fullName: string;
+                id: number;
+                link: string;
+              };
+              position: {
+                abbreviation: string;
+                name: string;
+                type: string;
+              };
             };
           };
         };
         home: {
+          battingOrder: number[];
           players: {
-            jerseyNumber: string;
-            person: {
-              fullName: string;
-              id: number;
-              link: string;
-            };
-            position: {
-              abbreviation: string;
-              name: string;
-              type: string;
+            [key: string]: {
+              battingOrder: string;
+              jerseyNumber: string;
+              person: {
+                fullName: string;
+                id: number;
+                link: string;
+              };
+              position: {
+                abbreviation: string;
+                name: string;
+                type: string;
+              };
             };
           };
         };
@@ -125,7 +133,6 @@ export type GameResponse = {
   };
 };
 
-// TODO: shape data for individual pitcher response
 export type PitcherResponse = {
   people: {
     fullName: string;
@@ -145,6 +152,3 @@ export type PitcherResponse = {
     }[];
   }[];
 };
-
-// TODO: shape data for individual hitter response
-export type BatterResponse = {};
