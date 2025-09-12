@@ -1,4 +1,17 @@
-const PitchingStats = () => {
+type PitchingStatsProps = {
+  gameState: string | undefined;
+};
+
+const PitchingStats = ({ gameState }: PitchingStatsProps) => {
+  if (gameState !== 'Live' && gameState !== 'Final') {
+    return (
+      <div>
+        <h3>Pitching Stats</h3>
+        <p>Pitching stats will be available once the game begins.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h3>Pitching Stats</h3>

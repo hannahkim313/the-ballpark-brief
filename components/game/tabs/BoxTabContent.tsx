@@ -1,13 +1,19 @@
+import { GameResponse } from '@/types/statsAPI';
 import ScoringBox from '../../stats/ScoringBox';
 import BattingStats from '../../stats/BattingStats';
 import PitchingStats from '../../stats/PitchingStats';
 
-const BoxTabContent = () => {
+type BoxTabContentProps = {
+  liveGameData: GameResponse;
+  gameState: string | undefined;
+};
+
+const BoxTabContent = ({ liveGameData, gameState }: BoxTabContentProps) => {
   return (
     <div className="space-y-4 md:space-y-12">
-      <ScoringBox />
-      <BattingStats />
-      <PitchingStats />
+      <ScoringBox liveGameData={liveGameData} gameState={gameState} />
+      <BattingStats gameState={gameState} />
+      <PitchingStats gameState={gameState} />
     </div>
   );
 };

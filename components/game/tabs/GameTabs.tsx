@@ -9,9 +9,15 @@ type GameTabsProps = {
   liveGameData: GameResponse;
   tabIndex: number;
   onTabChange: (index: number) => void;
+  gameState: string | undefined;
 };
 
-const GameTabs = ({ liveGameData, tabIndex, onTabChange }: GameTabsProps) => {
+const GameTabs = ({
+  liveGameData,
+  tabIndex,
+  onTabChange,
+  gameState,
+}: GameTabsProps) => {
   return (
     <Section>
       <div className="content-container">
@@ -35,7 +41,10 @@ const GameTabs = ({ liveGameData, tabIndex, onTabChange }: GameTabsProps) => {
               <LineupsTabContent liveGameData={liveGameData} />
             </TabPanel>
             <TabPanel>
-              <BoxTabContent />
+              <BoxTabContent
+                liveGameData={liveGameData}
+                gameState={gameState}
+              />
             </TabPanel>
           </TabPanels>
         </TabGroup>

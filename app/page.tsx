@@ -122,6 +122,7 @@ const Page = () => {
             liveGameData={liveData}
             tabIndex={tabIndex}
             onTabChange={setTabIndex}
+            gameState={gameState}
           />
         </>
       ) : (

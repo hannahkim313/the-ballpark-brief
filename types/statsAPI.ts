@@ -42,6 +42,7 @@ export type GameResponse = {
     teams: {
       away: {
         abbreviation: string;
+        clubName: string;
         name: string;
         record: {
           leagueRecord: {
@@ -52,6 +53,7 @@ export type GameResponse = {
       };
       home: {
         abbreviation: string;
+        clubName: string;
         name: string;
         record: {
           leagueRecord: {
@@ -127,6 +129,38 @@ export type GameResponse = {
               };
             };
           };
+        };
+      };
+    };
+    linescore: {
+      currentInningOrdinal: string;
+      innings: {
+        away: {
+          errors: number;
+          hits: number;
+          leftOnBase: number;
+          runs: number;
+        };
+        home: {
+          errors: number;
+          hits: number;
+          leftOnBase: number;
+          runs: number;
+        };
+        ordinalNum: string;
+      }[];
+      teams: {
+        away: {
+          errors?: number;
+          hits?: number;
+          leftOnBase?: number;
+          runs?: number;
+        };
+        home: {
+          errors?: number;
+          hits?: number;
+          leftOnBase?: number;
+          runs?: number;
         };
       };
     };

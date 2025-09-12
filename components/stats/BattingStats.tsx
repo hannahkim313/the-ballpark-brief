@@ -1,4 +1,17 @@
-const BattingStats = () => {
+type BattingStatsProps = {
+  gameState: string | undefined;
+};
+
+const BattingStats = ({ gameState }: BattingStatsProps) => {
+  if (gameState !== 'Live' && gameState !== 'Final') {
+    return (
+      <div>
+        <h3>Batting Stats</h3>
+        <p>Batting stats will be available once the game begins.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h3>Batting Stats</h3>

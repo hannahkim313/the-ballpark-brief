@@ -1,14 +1,39 @@
-const ScoringBox = () => {
+import { GameResponse } from '@/types/statsAPI';
+
+type ScoringBoxProps = {
+  liveGameData: GameResponse;
+  gameState: string | undefined;
+};
+
+const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
+  const {
+    gameData: { teams },
+    liveData: { linescore },
+  } = liveGameData;
+
+  const awayTeam = teams.away;
+  const homeTeam = teams.home;
+
+  if (gameState !== 'Live' && gameState !== 'Final') {
+    return (
+      <div>
+        <h3>Scoring Box</h3>
+        <p>Box score will be available once the game begins.</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h3>Scoring Box</h3>
 
       <div className="flex flex-col gap-3 md:gap-4">
         <p className="flex items-center justify-center gap-8 font-bold">
-          <span>Angels</span>
-          {/* TODO: Update score with dynamic values */}
-          <span className="text-xl md:text-2xl">0 - 0</span>
-          <span>Mariners</span>
+          <span>{awayTeam.clubName}</span>
+          <span className="text-xl md:text-2xl">
+            {linescore.teams.away.runs} - {linescore.teams.home.runs}
+          </span>
+          <span>{homeTeam.clubName}</span>
         </p>
 
         {/* TODO: Fetch and render API data */}
