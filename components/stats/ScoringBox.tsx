@@ -39,9 +39,8 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
         {/* TODO: Fetch and render API data */}
         <div className="table-container">
           <table className="data-table">
-            {/* TODO: Update team names with dynamic values */}
             <caption className="sr-only">
-              Angels vs Mariners Inning-by-Inning Score
+              {awayTeam.clubName} vs. {homeTeam.clubName} Inning-by-Inning Score
             </caption>
 
             <thead className="table-head">
