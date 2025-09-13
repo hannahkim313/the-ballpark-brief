@@ -14,6 +14,9 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
   const awayTeam = teams.away;
   const homeTeam = teams.home;
 
+  const innings = linescore.innings;
+  const totalInnings = Math.max(9, linescore.innings.length);
+
   if (gameState !== 'Live' && gameState !== 'Final') {
     return (
       <div>
@@ -48,34 +51,15 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
                 <th scope="col" className="first-col-header">
                   Team
                 </th>
-                <th scope="col" className="score-col">
-                  1
-                </th>
-                <th scope="col" className="score-col">
-                  2
-                </th>
-                <th scope="col" className="score-col">
-                  3
-                </th>
-                <th scope="col" className="score-col">
-                  4
-                </th>
-                <th scope="col" className="score-col">
-                  5
-                </th>
-                <th scope="col" className="score-col">
-                  6
-                </th>
-                <th scope="col" className="score-col">
-                  7
-                </th>
-                <th scope="col" className="score-col">
-                  8
-                </th>
-                <th scope="col" className="score-col">
-                  9
-                </th>
-                {/* TODO: Dynamically add extra cols if games goes into extra innings */}
+                {Array.from({ length: totalInnings }).map((_, index) => {
+                  const inning = innings[index];
+
+                  return (
+                    <th key={index} scope="col" className="score-col">
+                      {inning ? inning.num : index + 1}
+                    </th>
+                  );
+                })}
                 <th scope="col" className="score-col border-col">
                   <abbr title="Runs">R</abbr>
                 </th>

@@ -147,6 +147,7 @@ export type GameResponse = {
           leftOnBase: number;
           runs: number;
         };
+        num: number;
         ordinalNum: string;
       }[];
       teams: {
