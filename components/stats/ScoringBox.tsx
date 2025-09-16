@@ -7,6 +7,15 @@ type ScoringBoxProps = {
 };
 
 const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
+  if (gameState !== 'Live' && gameState !== 'Final') {
+    return (
+      <div>
+        <h3>Scoring Box</h3>
+        <p>Box score will be available once the game begins.</p>
+      </div>
+    );
+  }
+
   const {
     gameData: { teams },
     liveData: { linescore },
@@ -17,15 +26,6 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
 
   const innings = linescore.innings;
   const totalInnings = Math.max(9, linescore.innings.length);
-
-  if (gameState !== 'Live' && gameState !== 'Final') {
-    return (
-      <div>
-        <h3>Scoring Box</h3>
-        <p>Box score will be available once the game begins.</p>
-      </div>
-    );
-  }
 
   return (
     <div>
