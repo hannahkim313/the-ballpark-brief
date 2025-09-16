@@ -1,4 +1,5 @@
 import { GameResponse } from '@/types/statsAPI';
+import TeamRow from './TeamRow';
 
 type ScoringBoxProps = {
   liveGameData: GameResponse;
@@ -39,7 +40,6 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
           <span>{homeTeam.clubName}</span>
         </p>
 
-        {/* TODO: Fetch and render API data */}
         <div className="table-container">
           <table className="data-table">
             <caption className="sr-only">
@@ -51,6 +51,7 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
                 <th scope="col" className="first-col-header">
                   Team
                 </th>
+
                 {Array.from({ length: totalInnings }).map((_, index) => {
                   const inning = innings[index];
 
@@ -60,6 +61,7 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
                     </th>
                   );
                 })}
+
                 <th scope="col" className="score-col border-col">
                   <abbr title="Runs">R</abbr>
                 </th>
@@ -73,43 +75,20 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
             </thead>
 
             <tbody>
-              <tr>
-                <th scope="row" className="first-col">
-                  Angels
-                </th>
-                {/* TODO: Dynamically add <td> to represent table value for each col of this row */}
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col border-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-              </tr>
-
-              <tr>
-                <th scope="row" className="first-col">
-                  Mariners
-                </th>
-                {/* TODO: Dynamically add <td> to represent table value for each col of this row */}
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col border-col">0</td>
-                <td className="score-col">0</td>
-                <td className="score-col">0</td>
-              </tr>
+              <TeamRow
+                teams={teams}
+                side={'away'}
+                linescore={linescore}
+                totalInnings={totalInnings}
+                gameState={gameState}
+              />
+              <TeamRow
+                teams={teams}
+                side={'home'}
+                linescore={linescore}
+                totalInnings={totalInnings}
+                gameState={gameState}
+              />
             </tbody>
           </table>
         </div>
