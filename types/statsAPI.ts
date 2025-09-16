@@ -96,6 +96,10 @@ export type GameResponse = {
           battingOrder: number[];
           players: {
             [key: string]: {
+              allPositions?: {
+                abbreviation: string;
+                name: string;
+              }[];
               battingOrder: string;
               jerseyNumber: string;
               person: {
@@ -115,6 +119,10 @@ export type GameResponse = {
           battingOrder: number[];
           players: {
             [key: string]: {
+              allPositions?: {
+                abbreviation: string;
+                name: string;
+              }[];
               battingOrder: string;
               jerseyNumber: string;
               person: {

@@ -114,16 +114,12 @@ export const getPollInterval = (state?: string): number | undefined => {
   return undefined;
 };
 
-export const getBattingOrder = (
+export const getBattingOrderPlayers = (
   boxscore: GameResponse['liveData']['boxscore'],
   team: 'home' | 'away'
 ) => {
   return Object.values(boxscore.teams[team].players)
-    .filter(
-      (player) =>
-        player.position.name !== 'Pitcher' &&
-        Number(player.battingOrder) % 100 === 0
-    )
+    .filter((player) => Number(player.battingOrder) % 100 === 0)
     .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder));
 };
 
