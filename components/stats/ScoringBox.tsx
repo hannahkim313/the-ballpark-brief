@@ -77,14 +77,14 @@ const ScoringBox = ({ liveGameData, gameState }: ScoringBoxProps) => {
             <tbody>
               <TeamRow
                 teams={teams}
-                side={'away'}
+                side="away"
                 linescore={linescore}
                 totalInnings={totalInnings}
                 gameState={gameState}
               />
               <TeamRow
                 teams={teams}
-                side={'home'}
+                side="home"
                 linescore={linescore}
                 totalInnings={totalInnings}
                 gameState={gameState}
