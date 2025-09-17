@@ -112,6 +112,16 @@ export type GameResponse = {
                 name: string;
                 type: string;
               };
+              stats: {
+                batting: {
+                  atBats?: number;
+                  baseOnBalls?: number;
+                  hits?: number;
+                  rbi?: number;
+                  runs?: number;
+                  strikeOuts?: number;
+                };
+              };
             };
           };
         };
@@ -134,6 +144,16 @@ export type GameResponse = {
                 abbreviation: string;
                 name: string;
                 type: string;
+              };
+              stats: {
+                batting: {
+                  atBats?: number;
+                  baseOnBalls?: number;
+                  hits?: number;
+                  rbi?: number;
+                  runs?: number;
+                  strikeOuts?: number;
+                };
               };
             };
           };
@@ -175,6 +195,9 @@ export type GameResponse = {
     };
   };
 };
+
+export type Batter =
+  GameResponse['liveData']['boxscore']['teams']['away']['players'][string];
 
 export type PitcherResponse = {
   people: {

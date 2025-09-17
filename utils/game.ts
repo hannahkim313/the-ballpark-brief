@@ -1,4 +1,4 @@
-import { GameResponse, PitcherResponse } from '@/types/statsAPI';
+import { Batter, GameResponse, PitcherResponse } from '@/types/statsAPI';
 
 export const formatText = (value?: string): string => {
   if (!value) {
@@ -114,12 +114,16 @@ export const getPollInterval = (state?: string): number | undefined => {
   return undefined;
 };
 
+export const isStarter = (batter: Batter) => {
+  return Number(batter.battingOrder) % 100 === 0;
+};
+
 export const getBattingOrderPlayers = (
   boxscore: GameResponse['liveData']['boxscore'],
   team: 'home' | 'away'
 ) => {
   return Object.values(boxscore.teams[team].players)
-    .filter((player) => Number(player.battingOrder) % 100 === 0)
+    .filter((player) => isStarter(player))
     .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder));
 };
 

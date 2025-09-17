@@ -1,5 +1,6 @@
 import { GameResponse, PitcherResponse } from '@/types/statsAPI';
 import useStatsAPI from '@/hooks/useStatsAPI';
+import PlayerDetails from '../stats/PlayerDetails';
 import CenterMessage from '../ui/CenterMessage';
 import { buildPitcherStats, getBattingOrderPlayers } from '@/utils/game';
 
@@ -73,7 +74,7 @@ const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
                 </span>
                 ,{' '}
                 <span>
-                  {pitcherStats.strikeOuts} <abbr title="Strikeouts">SO</abbr>
+                  {pitcherStats.strikeOuts} <abbr title="Strikeouts">K</abbr>
                 </span>
               </p>
             </>
@@ -82,20 +83,13 @@ const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
 
         <div>
           <h5>Batters</h5>
+
           {battingOrder.length === 0 ? (
             <p className="font-semibold">TBD</p>
           ) : (
             <ol className="list-inside list-decimal">
               {battingOrder.map((batter) => {
                 const player = boxscoreTeam.players[`ID${batter.person.id}`];
-                const hasMultiplePositions =
-                  player.allPositions && player.allPositions.length > 0;
-                const positionAbbr = hasMultiplePositions
-                  ? player.allPositions?.[0].abbreviation
-                  : player.position.abbreviation;
-                const positionName = hasMultiplePositions
-                  ? player.allPositions?.[0].name
-                  : player.position.name;
 
                 return (
                   <li
@@ -103,15 +97,10 @@ const LineupCard = ({ liveGameData, isAway }: LineupCardProps) => {
                     className="font-semibold"
                   >
                     {player.person.fullName}{' '}
-                    <abbr
-                      title={`Position: ${positionName}`}
-                      className="text-subtle"
-                    >
-                      {positionAbbr}
-                    </abbr>{' '}
-                    <abbr title="Uniform number" className="text-subtle">
-                      {`#${player.jerseyNumber}`}
-                    </abbr>
+                    <PlayerDetails
+                      player={player}
+                      shouldShowAllPositions={false}
+                    />
                   </li>
                 );
               })}
