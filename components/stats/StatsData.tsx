@@ -6,14 +6,28 @@ type StatsDataProps = {
   teams: GameResponse['gameData']['teams'];
   side: 'away' | 'home';
   boxscore: GameResponse['liveData']['boxscore'];
+  isBattingStats: boolean;
 };
 
-const StatsData = ({ teams, side, boxscore }: StatsDataProps) => {
+const StatsData = ({
+  teams,
+  side,
+  boxscore,
+  isBattingStats,
+}: StatsDataProps) => {
   const team = teams[side];
+  const pitchers = boxscore.teams[side].pitchers;
+  const players = boxscore.teams[side].players;
 
-  const players = Object.values(boxscore.teams[side].players)
-    .filter((player) => player.battingOrder)
-    .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder));
+  const playersFiltered = isBattingStats
+    ? Object.values(players)
+        .filter((player) => player.battingOrder)
+        .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder))
+    : pitchers.map((id) => players[`ID${id}`]);
+
+  const caption = isBattingStats
+    ? `Individual Batting Stats for the ${team.clubName}`
+    : `Individual Pitching Stats for the ${team.clubName}`;
 
   return (
     <section>
@@ -21,53 +35,89 @@ const StatsData = ({ teams, side, boxscore }: StatsDataProps) => {
 
       <div className="table-container">
         <table className="data-table">
-          <caption className="sr-only">
-            Individual Batting Stats for the {team.clubName}
-          </caption>
+          <caption className="sr-only">{caption}</caption>
 
           <thead className="table-head">
             <tr>
               <th scope="col" className="first-col-header">
                 Player
               </th>
-              <th scope="col" className="score-col">
-                <abbr title="At-bats">AB</abbr>
-              </th>
-              <th scope="col" className="score-col">
-                <abbr title="Runs">R</abbr>
-              </th>
-              <th scope="col" className="score-col">
-                <abbr title="Hits">H</abbr>
-              </th>
-              <th scope="col" className="score-col">
-                <abbr title="Runs batted in">RBI</abbr>
-              </th>
-              <th scope="col" className="score-col">
-                <abbr title="Base on balls (walks)">BB</abbr>
-              </th>
-              <th scope="col" className="score-col">
-                <abbr title="Strikeouts">K</abbr>
-              </th>
+              {isBattingStats ? (
+                <>
+                  <th scope="col" className="score-col">
+                    <abbr title="At-bats">AB</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Runs">R</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Hits">H</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Runs batted in">RBI</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Base on balls (walks)">BB</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Strikeouts">K</abbr>
+                  </th>
+                </>
+              ) : (
+                <>
+                  <th scope="col" className="score-col">
+                    <abbr title="Innings pitched">IP</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Hits allowed">H</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Runs allowed">R</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Earned runs">ER</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Base on balls (walk)">BB</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Strikeout">K</abbr>
+                  </th>
+                  <th scope="col" className="score-col">
+                    <abbr title="Home runs allowed">HR</abbr>
+                  </th>
+                </>
+              )}
             </tr>
           </thead>
 
           <tbody>
-            {players.map((player) => {
+            {playersFiltered.map((player) => {
               const playerId = player.person.id;
 
               const {
                 atBats = 0,
-                baseOnBalls = 0,
-                hits = 0,
+                baseOnBalls: battingBB = 0,
+                hits: battingHits = 0,
                 rbi = 0,
-                runs = 0,
-                strikeOuts = 0,
+                runs: battingRuns = 0,
+                strikeOuts: battingSO = 0,
               } = player.stats.batting;
+
+              const {
+                baseOnBalls: pitchingBB = 0,
+                earnedRuns = 0,
+                hits: pitchingHits = 0,
+                runs: pitchingRuns = 0,
+                strikeOuts: pitchingSO = 0,
+                homeRuns = 0,
+                inningsPitched = '0.0',
+              } = player.stats.pitching;
 
               return (
                 <tr key={playerId}>
                   <th scope="row" className="first-col">
-                    {!isStarter(player) && (
+                    {isBattingStats && !isStarter(player) && (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="32"
@@ -88,12 +138,26 @@ const StatsData = ({ teams, side, boxscore }: StatsDataProps) => {
                     />
                   </th>
 
-                  <td className="score-col">{atBats}</td>
-                  <td className="score-col">{runs}</td>
-                  <td className="score-col">{hits}</td>
-                  <td className="score-col">{rbi}</td>
-                  <td className="score-col">{baseOnBalls}</td>
-                  <td className="score-col">{strikeOuts}</td>
+                  {isBattingStats ? (
+                    <>
+                      <td className="score-col">{atBats}</td>
+                      <td className="score-col">{battingRuns}</td>
+                      <td className="score-col">{battingHits}</td>
+                      <td className="score-col">{rbi}</td>
+                      <td className="score-col">{battingBB}</td>
+                      <td className="score-col">{battingSO}</td>
+                    </>
+                  ) : (
+                    <>
+                      <td className="score-col">{inningsPitched}</td>
+                      <td className="score-col">{pitchingHits}</td>
+                      <td className="score-col">{pitchingRuns}</td>
+                      <td className="score-col">{earnedRuns}</td>
+                      <td className="score-col">{pitchingBB}</td>
+                      <td className="score-col">{pitchingSO}</td>
+                      <td className="score-col">{homeRuns}</td>
+                    </>
+                  )}
                 </tr>
               );
             })}

@@ -13,7 +13,7 @@ const BoxTabContent = ({ liveGameData, gameState }: BoxTabContentProps) => {
     <div className="space-y-4 md:space-y-12">
       <ScoringBox liveGameData={liveGameData} gameState={gameState} />
       <BattingStats liveGameData={liveGameData} gameState={gameState} />
-      <PitchingStats gameState={gameState} />
+      <PitchingStats liveGameData={liveGameData} gameState={gameState} />
     </div>
   );
 };

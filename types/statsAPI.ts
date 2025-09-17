@@ -94,6 +94,7 @@ export type GameResponse = {
       teams: {
         away: {
           battingOrder: number[];
+          pitchers: number[];
           players: {
             [key: string]: {
               allPositions?: {
@@ -121,12 +122,22 @@ export type GameResponse = {
                   runs?: number;
                   strikeOuts?: number;
                 };
+                pitching: {
+                  baseOnBalls?: number;
+                  earnedRuns?: number;
+                  hits?: number;
+                  homeRuns?: number;
+                  inningsPitched?: string;
+                  runs?: number;
+                  strikeOuts?: number;
+                };
               };
             };
           };
         };
         home: {
           battingOrder: number[];
+          pitchers: number[];
           players: {
             [key: string]: {
               allPositions?: {
@@ -151,6 +162,15 @@ export type GameResponse = {
                   baseOnBalls?: number;
                   hits?: number;
                   rbi?: number;
+                  runs?: number;
+                  strikeOuts?: number;
+                };
+                pitching: {
+                  baseOnBalls?: number;
+                  earnedRuns?: number;
+                  hits?: number;
+                  homeRuns?: number;
+                  inningsPitched?: string;
                   runs?: number;
                   strikeOuts?: number;
                 };
@@ -196,7 +216,7 @@ export type GameResponse = {
   };
 };
 
-export type Batter =
+export type Player =
   GameResponse['liveData']['boxscore']['teams']['away']['players'][string];
 
 export type PitcherResponse = {

@@ -1,7 +1,7 @@
-import { Batter } from '@/types/statsAPI';
+import { Player } from '@/types/statsAPI';
 
 type PlayerDetailsProps = {
-  player: Batter;
+  player: Player;
   shouldShowAllPositions: boolean;
 };
 

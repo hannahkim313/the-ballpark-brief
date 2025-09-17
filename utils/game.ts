@@ -1,4 +1,4 @@
-import { Batter, GameResponse, PitcherResponse } from '@/types/statsAPI';
+import { Player, GameResponse, PitcherResponse } from '@/types/statsAPI';
 
 export const formatText = (value?: string): string => {
   if (!value) {
@@ -114,7 +114,7 @@ export const getPollInterval = (state?: string): number | undefined => {
   return undefined;
 };
 
-export const isStarter = (batter: Batter) => {
+export const isStarter = (batter: Player) => {
   return Number(batter.battingOrder) % 100 === 0;
 };
 

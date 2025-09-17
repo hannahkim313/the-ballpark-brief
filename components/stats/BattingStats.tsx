@@ -26,8 +26,18 @@ const BattingStats = ({ liveGameData, gameState }: BattingStatsProps) => {
       <h3>Batting Stats</h3>
 
       <div className="space-y-4">
-        <StatsData teams={teams} side="away" boxscore={boxscore} />
-        <StatsData teams={teams} side="home" boxscore={boxscore} />
+        <StatsData
+          teams={teams}
+          side="away"
+          boxscore={boxscore}
+          isBattingStats={true}
+        />
+        <StatsData
+          teams={teams}
+          side="home"
+          boxscore={boxscore}
+          isBattingStats={true}
+        />
       </div>
     </div>
   );
