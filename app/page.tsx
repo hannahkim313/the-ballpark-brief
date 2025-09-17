@@ -44,10 +44,6 @@ const Page = () => {
     { pollInterval }
   );
 
-  // TODO: remove console log when finished implementing
-  console.log(liveData);
-  console.log(pollInterval);
-
   const handleDateChange = (date: string) => {
     setSelectedDate(date);
     setPendingGame(null);
@@ -73,14 +69,15 @@ const Page = () => {
       return;
     }
 
-    const gamesList = todaysGames.map(({ gamePk, teams }) => {
-      const { away, home } = teams;
+    const gamesList = todaysGames
+      .map(({ gamePk, teams }) => {
+        const { away, home } = teams;
 
-      return {
-        gamePk,
-        game: `${away.team.name} vs. ${home.team.name}`,
-      };
-    });
+        return { gamePk, game: `${away.team.name} vs. ${home.team.name}` };
+      })
+      .filter(
+        (g, index, self) => index === self.findIndex((x) => x.game === g.game)
+      );
 
     setGamesList(gamesList);
   }, [scheduleData]);
