@@ -48,6 +48,10 @@
     @apply max-w-full;
   }
 
+  table {
+    @apply text-sm sm:text-base;
+  }
+
   th,
   td {
     @apply p-2;
@@ -55,7 +59,7 @@
 
   th:first-child,
   td:first-child {
-    @apply sticky left-0 z-10 text-left shadow-md;
+    @apply sticky left-0 z-10 bg-white text-left shadow-md;
   }
 
   abbr[title] {
@@ -68,7 +72,7 @@
 }
 
 @utility text-subtle {
-  @apply text-sm font-normal text-neutral-600;
+  @apply text-xs font-normal text-neutral-600 sm:text-sm;
 }
 
 @utility px-content {
@@ -100,7 +104,7 @@
 }
 
 @utility table-container {
-  @apply data-card w-full overflow-x-auto p-0;
+  @apply data-card w-full max-w-full overflow-x-auto overscroll-x-contain p-0;
 }
 
 @utility data-table {
