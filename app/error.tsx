@@ -1,24 +1,25 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect } from 'react';
 
 type ErrorProps = {
   error: Error & { digest?: string };
-  reset: () => void;
 };
 
-const Error = ({ error, reset }: ErrorProps) => {
+const Error = ({ error }: ErrorProps) => {
   useEffect(() => {
     console.error(error);
   }, [error]);
 
   return (
-    <div>
+    <div className="content-container px-content py-content size-full text-center">
       <h2>Oops! Looks like something went wrong.</h2>
-      <p>{error.message}</p>
-      <button onClick={() => reset()}>Try again</button>
-      <Link href="/">Return Home</Link>
+
+      <p className="mb-4">{error.message}</p>
+
+      <button onClick={() => window.location.reload()} className="btn-primary">
+        Reload Page
+      </button>
     </div>
   );
 };
