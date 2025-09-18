@@ -15,7 +15,7 @@ const Error = ({ error }: ErrorProps) => {
     <div className="content-container px-content py-content size-full text-center">
       <h2>Oops! Looks like something went wrong.</h2>
 
-      <p className="mb-4">{error.message}</p>
+      <p className="mb-8">{error.message}</p>
 
       <button onClick={() => window.location.reload()} className="btn-primary">
         Reload Page
