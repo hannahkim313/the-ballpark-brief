@@ -10,7 +10,7 @@ const LineupsTabContent = ({ liveGameData }: LineupsTabContentProps) => {
     <div>
       <h3>Starting Lineups</h3>
 
-      <div className="flex flex-col gap-4 md:flex-row md:justify-center">
+      <div className="flex flex-col gap-4 sm:flex-row md:justify-center">
         <LineupCard liveGameData={liveGameData} isAway={true} />
         <LineupCard liveGameData={liveGameData} isAway={false} />
       </div>
